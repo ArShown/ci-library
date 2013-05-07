@@ -68,6 +68,13 @@ class DLayout
 		$this->layout = $layout;
 	}
 
+	/**
+	 * Set layout file.
+	 * 
+	 * @return  string  The HTML String of head.
+	 *
+	 * @since   1.0
+	 */
 	public function fetchHead()
 	{
 		// Get line endings
@@ -83,10 +90,6 @@ class DLayout
 			if (!is_null($strAttr['media']))
 			{
 				$buffer .= ' media="' . $strAttr['media'] . '" ';
-			}
-			if ($temp = JArrayHelper::toString($strAttr['attribs']))
-			{
-				$buffer .= ' ' . $temp;
 			}
 			$buffer .= $tagEnd . $lnEnd;
 		}
@@ -189,7 +192,7 @@ class DLayout
 	 * @param   boolean  $defer  Adds the defer attribute.
 	 * @param   boolean  $async  Adds the async attribute.
 	 *
-	 * @return
+	 * @return  DLayout
 	 *
 	 * @since   1.0
 	 */
@@ -208,7 +211,7 @@ class DLayout
 	 * @param   string  $content  Script
 	 * @param   string  $type     Scripting mime (defaults to 'text/javascript')
 	 *
-	 * @return
+	 * @return  DLayout
 	 *
 	 * @since   1.0
 	 */
@@ -232,17 +235,15 @@ class DLayout
 	 * @param   string  $url      URL to the linked style sheet
 	 * @param   string  $type     Mime encoding type
 	 * @param   string  $media    Media type that this stylesheet applies to
-	 * @param   array   $attribs  Array of attributes
 	 *
-	 * @return
+	 * @return  DLayout
 	 *
 	 * @since   1.0
 	 */
-	public function addStyleSheet($url, $type = 'text/css', $media = null, $attribs = array())
+	public function addStyleSheet($url, $type = 'text/css', $media = null)
 	{
 		$this->_styleSheets[$url]['mime'] = $type;
 		$this->_styleSheets[$url]['media'] = $media;
-		$this->_styleSheets[$url]['attribs'] = $attribs;
 
 		return $this;
 	}
@@ -253,7 +254,7 @@ class DLayout
 	 * @param   string  $content  Style declarations
 	 * @param   string  $type     Type of stylesheet (defaults to 'text/css')
 	 *
-	 * @return
+	 * @return  DLayout
 	 *
 	 * @since   1.0
 	 */
@@ -271,6 +272,3 @@ class DLayout
 		return $this;
 	}
 }
-
-/* End of file layout.php */
-/* Location: apps/libraries/layout.php */
